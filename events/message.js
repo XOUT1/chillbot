@@ -1,9 +1,10 @@
 module.exports = async (client, message) => {
   if (message.author.bot) return;
-
+  const msg = require("../prefix.json")
   //Prefixes also have mention match
+
   const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
-  const prefix = message.content.match(prefixMention) ? message.content.match(prefixMention)[0] : client.config.prefix;
+  const prefix = message.content.match(prefixMention)  ||msg[message.guild.id].prefix
 
   if (message.content.indexOf(prefix) !== 0) return;
 
